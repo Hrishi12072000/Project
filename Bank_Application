@@ -1,0 +1,199 @@
+//WAP to create your own bank and perform different task
+//EX:- 1.Deposite amount 2.withdraw cash  3.Show Balance  4.Rate of interest 5.Fix deposite.
+package Bank_Application;
+import java.util.*;
+public class Accept extends Bank_case
+{
+	static int acc_no,age;
+	static char name,gender,acc_type;
+	static double balance;
+	static private int pin=1234;
+	static Scanner sc=new Scanner(System.in);
+	public static void accept() 
+	{
+		// TODO Auto-generated method stub
+		System.out.println("--------------------------------------------------------------WELCOME TO HRISHIKESH YADAV BANK--------------------------------------------------------------\n");
+		System.out.println("Please insert your detail");
+        System.out.println("Enter your Name:-");
+        name=sc.next().charAt(0);
+        System.out.println("Enter your account number:-");
+        acc_no=sc.nextInt(); 
+        System.out.println("Enter your account type saving or current:-");
+        acc_type=sc.next().charAt(0);
+        System.out.println("Enter your balance:-");
+        balance=sc.nextDouble();
+        System.out.println("Enter your age:-");
+		age=sc.nextInt();
+		System.out.println("Enter your gender:-");
+		gender=sc.next().charAt(0);
+	} 
+	public static void deposite_amount() 
+	{ 
+		System.out.println("Please enter your pin:-"); 
+		int safety_pin=sc.nextInt();
+		if(safety_pin==1234)
+		{
+		System.out.println("Enter how much amount you have to deposite:-");
+		int amount=sc.nextInt();
+		System.out.println("Do you want to check your balance 'Y' OR 'N' ");
+	    char ans=sc.next().charAt(0);
+	    while(ans=='Y');
+	    balance=balance+amount;
+	    System.out.println("Your current balance is "+balance);
+		}
+		else
+		{
+			System.out.println("You have entered incorrect pin please enter correct pin");
+		}
+	}
+	public static void cash_withdrawal()
+	{
+		System.out.println("Please enter your pin:-");
+		int safety_pin=sc.nextInt();
+		if(safety_pin==1234)
+		{
+		System.out.println("Enter how much amount do you have to withdraw:-");
+		int amount=sc.nextInt();
+		System.out.println("Do you want to check your balance 'Y' OR 'N' ");
+	    char ans=sc.next().charAt(0);
+	    while(ans=='Y');
+	    balance=balance-amount;
+	    System.out.println("Your current balance is "+balance);
+		}
+		else
+		{
+			System.out.println("You have entered incorrect pin please enter correct pin");
+		}
+	}
+	public static void show_acc_balance()
+	{
+		System.out.println("Please enter your pin:-");
+		int safety_pin=sc.nextInt();
+		if(safety_pin==1234)
+		{
+			System.out.println("Your balance is "+balance);
+		}
+		else
+		{
+			System.out.println("You have entered incorrect pin please enter correct pin");
+		}
+	    	
+	}
+	public static void show_ROI()
+	{
+			System.out.println("Enter your age");
+			age=sc.nextInt();
+			System.out.println("Enter your gender");
+			gender=sc.next().charAt(0);
+		if(age>60)
+		{
+			System.out.println("Rate of interest according to your age and gender is 7 %");
+		}
+		else if(age>=18 && gender=='F')
+		{
+			System.out.println("Rate of interest according to your age and gender is 6.5 %");
+		}
+		else if(age>=18 && gender=='M')
+		{
+			System.out.println("Rate of interest is 6 %");
+		}
+		else
+		{
+			System.out.println("Rate of interest according to your age and gender is 5 % P.A.");
+		}
+	}
+	public static void show_fd_percent()
+	{
+		System.out.println("For how much months do you want to fix deposite your money");
+		int months=sc.nextInt();
+		if(months<=1)
+		{
+			System.out.println("Fix deposite for "+months+" month is 4.00%");
+		}
+		else if(months<=2)
+		{
+			System.out.println("Fix deposite for "+months+" months is 4.50%");
+		}
+		else if(months<=6)
+		{
+			System.out.println("Fix deposite for "+months+" months is 5.00%");
+		}
+		else if(months<=12)
+		{
+			System.out.println("Fix deposite for "+months+" months is 5.50%");
+		}
+		else if(months<=24)
+		{
+			System.out.println("Fix deposite for "+months+" months is 6.00%");
+		}
+		else if(months<=60)
+		{
+			System.out.println("Fix deposite for "+months+" months is 6.50%");
+		}
+		else if(months<=120)
+		{
+			System.out.println("Fix deposite for "+months+" months is 7.00%");
+		}
+		else 
+		{
+			System.out.println("Fix deposite for "+months+" months is 8.00%");
+		}		
+}
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package Bank_Application;
+import java.util.*;
+public class Bank_case
+{
+	public void operation()
+	{
+	int choice;
+	char ans;
+	Accept obj=new Accept();
+	Scanner sc=new Scanner(System.in);
+	do {
+	System.out.println("Enter your choice \n 1.Deposite amount \t 2.withdraw cash \n 3.Show Balance \t 4.Rate of interest \n 5.Fix deposite");
+    choice=sc.nextInt();
+	switch(choice)
+	{
+    case 1: obj.deposite_amount(); 
+            break;
+    case 2: obj.cash_withdrawal();
+            break;
+    case 3: obj.show_acc_balance();
+            break; 
+    case 4: obj.show_ROI();
+            break;
+    case 5: obj.show_fd_percent();
+            break;
+    default :  System.out.println("Please enter valid number");
+    }
+	System.out.println("Do you want to continue Y or N");
+    ans=sc.next().charAt(0);
+	}while(ans=='Y' || ans=='y');
+	System.out.println("THANK YOU FOR COMING \n HAVE A NICE DAY");
+    }
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package Bank_Application;
+
+public class Run_Bank_Application extends Bank_case
+{
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		Run_Bank_Application obj=new Run_Bank_Application();
+		obj.run();
+	}
+	public static void run()
+	{
+		Accept obj=new Accept();
+		obj.accept();
+		Bank_case obj1=new Bank_case();
+		obj1.operation();
+	}
+}  
